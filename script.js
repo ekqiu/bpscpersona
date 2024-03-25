@@ -1,46 +1,46 @@
 const questions = [
   { question: "What is the persona's name?", answers: {
-    a: "text",
-    b: "text",
-    c: "text",
-    d: "text",
-    e: "text",
-  } },
+    a: {text: "text"},
+    b: {text: "text"},
+    c: {text: "text"},
+    d: {text: "text"},
+    e: {text: "text"},
+  }},
   { question: "What is the persona's name?", answers: {
-    a: "text",
-    b: "text",
-    c: "text",
-    d: "text",
-    e: "text",
-  } },
+    a: {text: "text"},
+    b: {text: "text"},
+    c: {text: "text"},
+    d: {text: "text"},
+    e: {text: "text"},
+  }},
   { question: "What is the persona's name?", answers: {
-    a: "text",
-    b: "text",
-    c: "text",
-    d: "text",
-    e: "text",
-  } },
+    a: {text: "text"},
+    b: {text: "text"},
+    c: {text: "text"},
+    d: {text: "text"},
+    e: {text: "text"},
+  }},
   { question: "What is the persona's name?", answers: {
-    a: "text",
-    b: "text",
-    c: "text",
-    d: "text",
-    e: "text",
-  } },
+    a: {text: "text"},
+    b: {text: "text"},
+    c: {text: "text"},
+    d: {text: "text"},
+    e: {text: "text"},
+  }},
   { question: "What is the persona's name?", answers: {
-    a: "text",
-    b: "text",
-    c: "text",
-    d: "text",
-    e: "text",
-  } },
+    a: {text: "text"},
+    b: {text: "text"},
+    c: {text: "text"},
+    d: {text: "text"},
+    e: {text: "text"},
+  }},
   { question: "What is the persona's name?", answers: {
-    a: "text",
-    b: "text",
-    c: "text",
-    d: "text",
-    e: "text",
-  } },
+    a: {text: "text"},
+    b: {text: "text"},
+    c: {text: "text"},
+    d: {text: "text"},
+    e: {text: "text"},
+  }},
 ];
 
 const results = {a: "Image.png", b: "Image.png", c: "Image.png", d: "Image.png", e: "Image.png"};
@@ -69,24 +69,14 @@ function displayQuestion() {
   }
 }
 
-function captureAnswers() {
-  persona = {};
-  questions.forEach((question) => {
-    switch (question.type) {
-      case "text":
-      case "number":
-        persona[question.question] = questionContainer.querySelector(`input[type=${question.type}]`).value;
-        break;
-      case "checkbox":
-        const selectedOptions = [];
-        questionContainer.querySelectorAll("input[type=checkbox]:checked").forEach((checkbox) => {
-          selectedOptions.push(checkbox.value);
-        });
-        persona[question.question] = selectedOptions;
-        break;
-    }
+
+function attachButtonClickHandlers() {
+  const choiceButtons = document.querySelectorAll('.large-rectangular');
+  choiceButtons.forEach((button) => {
+      button.addEventListener('click', handleAnswer);
   });
 }
+
 function generatePersona() {
   captureAnswers(); // Collect user responses
 
