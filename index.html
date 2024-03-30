@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script type="importmap">
+    {
+      "imports": {
+        "@google/generative-ai": "https://esm.run/@google/generative-ai"
+      }
+    }
+  </script>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +15,20 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>The BPSC Persona</h1>
-  <p>Decide what kind of SC you are by deciding what you would do in certain scenarios!</p>
-  <div id="questions"></div>
-  <div id="persona"></div>
-  <script src="script.js"></script>
+  <div id="center">
+    <div id="center-child">
+      <h1>The BPSC Persona</h1>
+      <div id="menu">
+        <p>Decide what kind of SC you are by deciding what you would do in certain scenarios!</p>
+      </div>
+      <div id="questions">
+
+        <input type="text" id="userResponse" style="display: none;">
+        <button id="progress">Start</button>
+      </div>
+      <div id="persona" style="display: none;"></div>
+    </div>
+  </div>
+  <script type="module" src="script.js"></script>
 </body>
 </html>

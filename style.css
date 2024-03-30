@@ -1,22 +1,56 @@
+/* 5356FF , #378CE7 , #67C6E3 , #DFF5FF */
+
 body {
-    font-family: sans-serif;
-    margin: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  #questions, #persona {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-  }
+  font-family: 'Open Sans', sans-serif;
+  background-color: #DFF5FF;
+  color: #5356FF;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+#center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10%
+}
+
+#center-child {
+  width: 50%;
+  height: 50%;
+}
+
+#questions,
+#persona,
+#menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+button {
+  background-color: #67C6E3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 3rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.2);
+}
+
+input[type=text] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}

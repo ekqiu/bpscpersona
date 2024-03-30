@@ -1,96 +1,60 @@
-const questions = [
-  { question: "What is the persona's name?", answers: {
-    a: {text: "text"},
-    b: {text: "text"},
-    c: {text: "text"},
-    d: {text: "text"},
-    e: {text: "text"},
-  }},
-  { question: "What is the persona's name?", answers: {
-    a: {text: "text"},
-    b: {text: "text"},
-    c: {text: "text"},
-    d: {text: "text"},
-    e: {text: "text"},
-  }},
-  { question: "What is the persona's name?", answers: {
-    a: {text: "text"},
-    b: {text: "text"},
-    c: {text: "text"},
-    d: {text: "text"},
-    e: {text: "text"},
-  }},
-  { question: "What is the persona's name?", answers: {
-    a: {text: "text"},
-    b: {text: "text"},
-    c: {text: "text"},
-    d: {text: "text"},
-    e: {text: "text"},
-  }},
-  { question: "What is the persona's name?", answers: {
-    a: {text: "text"},
-    b: {text: "text"},
-    c: {text: "text"},
-    d: {text: "text"},
-    e: {text: "text"},
-  }},
-  { question: "What is the persona's name?", answers: {
-    a: {text: "text"},
-    b: {text: "text"},
-    c: {text: "text"},
-    d: {text: "text"},
-    e: {text: "text"},
-  }},
-];
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const results = {a: "Image.png", b: "Image.png", c: "Image.png", d: "Image.png", e: "Image.png"};
+// Access your API key (see "Set up your API key" above)
+const genAI = new GoogleGenerativeAI("AIzaSyBszGH9mYtZTbVgw8hL_sbvUrmQ1Uzuc1E");
 
-const questionContainer = document.getElementById("questions");
-const personaContainer = document.getElementById("persona");
-  
-let persona = {}; // Object to store persona details
+document.getElementById("userResponse").style.display = "none";
+document.getElementById("persona").style.display = "none";
 
-let currentQuestionIndex = 0
+async function determineStyle() {
+    // For text-only input, use the gemini-pro model
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-function displayQuestion() {
-  const question = questions[currentQuestionIndex];
-  if (question) {
-      let html = `<p>${question.question}</p>`;
-      if (question.image) {
-          html += `<img src="${question.image}" alt="Question ${currentQuestion + 1}">`;
-      }
-      for (const option in question.answers) {
-          html += `<button class="large-rectangular" value="${option}" id="${option}">${question.answers[option].text}</button>`;
-      }
-      questionContainer.innerHTML = html;
-      attachButtonClickHandlers();
-  } else {
-  
-  }
+    const prompt = "Generate a question to ask a person to determine their leadership style"
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    //return the persona according to the text given
 }
 
+// a list of questions to ask the user
+questions = [
+    "What is your favorite color?",
+    "What is your favorite food?",
+    "What is your favorite movie?",
+    "What is your favorite book?",
+    "What is your favorite song?",
+]
+let responses = [];
+let questionIndex = 1;
 
-function attachButtonClickHandlers() {
-  const choiceButtons = document.querySelectorAll('.large-rectangular');
-  choiceButtons.forEach((button) => {
-      button.addEventListener('click', handleAnswer);
-  });
+function displayNextQuestion() {
+    if (questionIndex < questions.length) {
+        document.getElementById("qbox").textContent = questions[questionIndex];
+        questionIndex++;
+        if (questionIndex === questions.length) {
+            document.getElementById("progress").textContent = "Finish";
+        }
+    }
 }
 
-function generatePersona() {
-  captureAnswers(); // Collect user responses
+document.getElementById("progress").addEventListener("click", function () {
+    if (document.getElementById("progress").textContent === "Start") {
+        document.getElementById("userResponse").style.display = "block";
+        document.getElementById("questions").insertAdjacentHTML("afterbegin", `<div id="qbox">${questions[0]}</div>`);
+        document.getElementById("progress").textContent = "Next";
+    } else if (document.getElementById("progress").textContent === "Next") {
+        
+        responses.push(document.getElementById("userResponse").value);
 
-  // Process and format persona details (example)
-  persona.fullName = `${persona["What is the persona's name?"]} (Age: ${persona["What is their age?"]})`;
-  persona.description = `This ${persona["What is their occupation?"]} enjoys ${persona["What are their hobbies?"]} in their free time.`;
 
-  // Display persona details in the designated div
-  personaContainer.innerHTML = `<h2>Generated Persona</h2>
-  <p>Name: ${persona.fullName}</p>
-  <p>Occupation: ${persona.occupation}</p>
-  <p>Hobbies: ${persona.hobbies}</p>
-  <p>Description: ${persona.description}</p>`;
-}
-displayQuestion(); // Show questions on page load
+        // Display the next question
+        displayNextQuestion();
 
-generateBtn.addEventListener("click", generatePersona); // Add click event listener
+    } else if (document.getElementById("progress").textContent === "Finish") {
+        responses.push(document.getElementById("userResponse").value);
+        document.getElementById("persona").innerHTML = `<p>${responses}</p>`;
+        document.getElementById("persona").style.display = "block";
+    }
+});
