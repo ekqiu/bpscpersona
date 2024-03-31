@@ -3,8 +3,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 // Access your API key (see "Set up your API key" above)
 const genAI = new GoogleGenerativeAI("AIzaSyBszGH9mYtZTbVgw8hL_sbvUrmQ1Uzuc1E");
 
-document.getElementById("userResponse").style.display = "none";
-document.getElementById("persona").style.display = "none";
+document.getElementById("userResponse").value = "";
+
 
 async function determineStyle() {
     // For text-only input, use the gemini-pro model
@@ -20,7 +20,7 @@ async function determineStyle() {
 
 // a list of questions to ask the user
 questions = [
-    "What is your favorite color?",
+    "What's your name?",
     "What is your favorite food?",
     "What is your favorite movie?",
     "What is your favorite book?",
@@ -45,8 +45,12 @@ document.getElementById("progress").addEventListener("click", function () {
         document.getElementById("questions").insertAdjacentHTML("afterbegin", `<div id="qbox">${questions[0]}</div>`);
         document.getElementById("progress").textContent = "Next";
     } else if (document.getElementById("progress").textContent === "Next") {
-        
+
         responses.push(document.getElementById("userResponse").value);
+        document.getElementById("userResponse").value = "";
+
+        document.getElementById("userResponse").style.display = "none";
+
 
 
         // Display the next question
@@ -54,6 +58,8 @@ document.getElementById("progress").addEventListener("click", function () {
 
     } else if (document.getElementById("progress").textContent === "Finish") {
         responses.push(document.getElementById("userResponse").value);
+
+        document.getElementById("questions").style.display = "none";
         document.getElementById("persona").innerHTML = `<p>${responses}</p>`;
         document.getElementById("persona").style.display = "block";
     }
