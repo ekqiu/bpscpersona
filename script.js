@@ -25,6 +25,7 @@ questions = [
     "What is your favorite movie?",
     "What is your favorite book?",
     "What is your favorite song?",
+    "What is your favorite color?",
 ]
 let responses = [];
 let questionIndex = 1;
@@ -46,10 +47,23 @@ document.getElementById("progress").addEventListener("click", function () {
         document.getElementById("progress").textContent = "Next";
     } else if (document.getElementById("progress").textContent === "Next") {
 
-        responses.push(document.getElementById("userResponse").value);
+        // if response is from userResponse, push the name to responses array, else push the option id to responses array
+        if (document.getElementById("userResponse").value !== "") {
+            responses.push(document.getElementById("userResponse").value);
+        } else {
+            // get the radio button that is checked
+            const radioButtons = document.getElementsByName("choice");
+            for (let i = 0; i < radioButtons.length; i++) {
+                if (radioButtons[i].checked) {
+                    responses.push(radioButtons[i].value);
+                    break;
+                }
+            }
+        }
         document.getElementById("userResponse").value = "";
 
         document.getElementById("userResponse").style.display = "none";
+        document.getElementById("radio").style.display = "grid";
 
 
 
@@ -57,7 +71,13 @@ document.getElementById("progress").addEventListener("click", function () {
         displayNextQuestion();
 
     } else if (document.getElementById("progress").textContent === "Finish") {
-        responses.push(document.getElementById("userResponse").value);
+        const radioButtons = document.getElementsByName("choice");
+            for (let i = 0; i < radioButtons.length; i++) {
+                if (radioButtons[i].checked) {
+                    responses.push(radioButtons[i].value);
+                    break;
+                }
+            }
 
         document.getElementById("questions").style.display = "none";
         document.getElementById("persona").innerHTML = `<p>${responses}</p>`;

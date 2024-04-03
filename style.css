@@ -49,6 +49,9 @@ h1 {
     background-color: #378CE7;
   }
 
+  #choice:active {
+    background-color: #67C6E3;
+  }
 
   #progress {
     background-color: #67C6E3;
