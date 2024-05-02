@@ -156,7 +156,7 @@ function generatePersona() {
     ctx.font = "bold 50px sans-serif";
     ctx.fillText(url, 1140, 2340);
   };
-  img.src = `/images/${persona}.png`;
+  img.src = `images/${persona}.png`;
 
   return persona;
 }
