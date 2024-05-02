@@ -1,3 +1,0 @@
-add  multiplier isntead of storing the answer
-store calculations instead of options
-instead of mbti use 2 cats 4 alphebets (4possibilities)

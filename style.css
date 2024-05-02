@@ -1,5 +1,16 @@
 /* 5356FF , #378CE7 , #67C6E3 , #DFF5FF */
 
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+canvas {
+  width: 100%;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   background-color: #DFF5FF;
@@ -8,8 +19,8 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  margin-bottom: 1vh;
 }
 
 p {
@@ -20,11 +31,10 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10%
 }
 
 #center-child {
-  width: 50%;
+  width: 90%;
   height: 50%;
 }
 
@@ -35,7 +45,7 @@ p {
   display: grid;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  margin: 2vh;
 }
 
 #choice {
@@ -59,7 +69,6 @@ p {
 
 footer {
   text-align: center;
-  margin-top: 10vh;
 }
 
 #progress {
@@ -71,7 +80,7 @@ footer {
   border-radius: 5px;
   font-size: 3rem;
   transition: transform 0.3s ease-in-out;
-  margin: 20px;
+  margin: 1vh;
 }
 
 #progress:hover {
@@ -86,4 +95,24 @@ input[type=text] {
   border-radius: 5px;
   font-size: 1.5rem;
   margin: 20px;
+}
+
+button {
+  background-color: #378CE7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin: 10px;
+}
+
+.button:hover {
+  background-color: #67C6E3;
+}
+
+.button:active {
+  background-color: #5356FF;
 }

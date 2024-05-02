@@ -12,17 +12,20 @@
     <div id="center-child">
       <h1>The BPSC Persona</h1>
       <div id="menu">
-        <p>Decide what kind of SC you are by deciding what you would do in certain scenarios!</p>
+        <p id="desc">Find out what kind of SC you are by deciding what you would do in certain scenarios! <br><br>
+        This is a quiz made for fun and may not be accurate. The quiz is best taken on mobile for a better experience!<br><br>
+        Have fun! :D
+      </p>
       </div>
       <div id="questions">
 
         <input type="text" id="userResponse" style="display: none;">
         <div id="radio" style="display: none;">
           <label for="option1" id="choice">
-            <input type="radio" name="choice" value="option1" id="option1"> <div id="text1"></div>
+            <input type="radio" name="choice" value=+1 id="option1"> <div id="text1"></div>
           </label>
           <label for="option2" id="choice">
-            <input type="radio" name="choice" value="option2" id="option2"> <div id="text2"></div>
+            <input type="radio" name="choice" value=-1 id="option2"> <div id="text2"></div>
           </label>
         </div>
 
@@ -34,8 +37,9 @@
   
 
   <footer>
-    <div id="persona" style="display: none;"></div>
-    <p>Created by <a href="https://ekqiu.github.io">Evan</a>, together with Chun Hwee and Jia Jin (Illustrator)</p>
+    <div id="persona" style="display: none;"><canvas id="personaa"></canvas><button id="download">Save Image</button><br>Thank you for taking the quiz! Download and share your persona with your friends!
+    </div>
+    <p>A ROD gift prepared by <a href="https://ekqiu.github.io">Evan</a>, together with <a href="https://www.instagram.com/smarthong_whatever/">Chun Hwee</a> and <a href="https://www.instagram.com/jia_jin_is_trashh/">Jia Jin</a></p>
   </footer>
 
   <script type="module" src="script.js"></script>
