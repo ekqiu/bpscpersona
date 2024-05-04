@@ -239,8 +239,20 @@ document.getElementById("progress").addEventListener("click", function () {
         return;
       }
     }
-
-    let persona = generatePersona();
+    document.getElementById("radio").style.display = "none";
+    // if last selection is "+1", show the outcome[0] else show outcome[1]
+    if (responses[responses.length - 1] === "+1") {
+      document.getElementById("qbox").textContent = outcomes[0][0];
+      document.getElementById("img").src = `images/${outcomes[0][1]}`;
+    } else {
+      document.getElementById("qbox").textContent = outcomes[1][0];
+      document.getElementById("img").src = `images/${outcomes[1][1]}`;
+    }
+    document.getElementById("progress").textContent = "Get Persona";
+  } else if (
+    document.getElementById("progress").textContent === "Get Persona"
+  ) {
+    generatePersona();
     document.getElementById("questions").style.display = "none";
     document.getElementById("persona").style.display = "block";
   }
@@ -254,3 +266,6 @@ document.getElementById("download").addEventListener("click", function () {
   link.download = "persona.png";
   link.click();
 });
+  window.addEventListener('DOMContentLoaded', function() {
+    $('#exampleModalCenter').modal('show');
+  });
