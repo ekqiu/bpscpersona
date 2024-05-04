@@ -258,14 +258,6 @@ document.getElementById("progress").addEventListener("click", function () {
   }
 });
 
-document.getElementById("download").addEventListener("click", function () {
-  const canvas = document.getElementById("personaa");
-  const image = canvas.toDataURL("image/png");
-  const link = document.createElement("a");
-  link.href = image;
-  link.download = "persona.png";
-  link.click();
-});
 window.addEventListener("DOMContentLoaded", function () {
   $("#exampleModalCenter").modal("show");
 });
@@ -284,6 +276,10 @@ async function shareImage(imageUrl) {
     navigator.share(shareData);
   } catch (error) {
     console.error("Error sharing the image: ", error);
+    const link = document.createElement("a");
+    link.href = imageUrl;
+    link.download = "persona.png";
+    link.click();
   }
 }
 
@@ -312,3 +308,4 @@ function preloadImages() {
 
 // Call the preloadImages function to preload the images
 preloadImages();
+
