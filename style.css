@@ -18,10 +18,10 @@ img {
 
 @media screen and (min-width: 769px) {
   img {
-    width: 50%;
+    width: 40%;
   }
     canvas {
-      width: 50%;
+      width: 40%;
     }
 }
 
@@ -47,6 +47,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 #center-child {
@@ -100,7 +101,7 @@ footer {
 }
 
 #progress:hover {
-  transform: scale(1.2);
+  transform: scale(1.05);
 }
 
 
@@ -133,3 +134,10 @@ button {
   background-color: #5356FF;
 }
 
+#persona {
+ text-align: center;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}

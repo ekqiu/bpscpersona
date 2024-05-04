@@ -254,7 +254,7 @@ document.getElementById("progress").addEventListener("click", function () {
   ) {
     generatePersona();
     document.getElementById("questions").style.display = "none";
-    document.getElementById("persona").style.display = "block";
+    document.getElementById("persona").style.display = "flex";
   }
 });
 
@@ -266,6 +266,34 @@ document.getElementById("download").addEventListener("click", function () {
   link.download = "persona.png";
   link.click();
 });
-  window.addEventListener('DOMContentLoaded', function() {
-    $('#exampleModalCenter').modal('show');
-  });
+window.addEventListener("DOMContentLoaded", function () {
+  $("#exampleModalCenter").modal("show");
+});
+
+const shareFileButton = document.querySelector("#shareFileBtn");
+shareFileButton.addEventListener("click", () => {
+  const image = document.querySelector("#personaa").toDataURL("image/png");
+  shareImage(image);
+});
+
+async function shareImage(imageUrl) {
+  console.log(`clicked shareImageAsset: ${imageUrl}`);
+  const fetchedImage = await fetch(imageUrl);
+  const blobImage = await fetchedImage.blob();
+  const fileName = imageUrl.split("/").pop();
+  const filesArray = [
+    new File([blobImage], fileName, {
+      type: "image/png",
+      lastModified: Date.now(),
+    }),
+  ];
+  const shareData = {
+    title: fileName,
+    files: filesArray,
+    url: document.location.origin,
+  };
+  if (navigator.canShare && navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
+  // TODO implements a fallback to download the file
+}
