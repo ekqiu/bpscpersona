@@ -288,9 +288,7 @@ async function shareImage(imageUrl) {
     }),
   ];
   const shareData = {
-    title: fileName,
     files: filesArray,
-    url: document.location.origin,
   };
   if (navigator.canShare && navigator.canShare(shareData)) {
     await navigator.share(shareData);
