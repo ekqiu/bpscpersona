@@ -277,23 +277,14 @@ shareFileButton.addEventListener("click", () => {
 });
 
 async function shareImage(imageUrl) {
-  console.log(`clicked shareImageAsset: ${imageUrl}`);
-  const fetchedImage = await fetch(imageUrl);
-  const blobImage = await fetchedImage.blob();
-  const fileName = imageUrl.split("/").pop();
-  const filesArray = [
-    new File([blobImage], fileName, {
-      type: "image/png",
-      lastModified: Date.now(),
-    }),
-  ];
-  const shareData = {
-    files: filesArray,
-  };
-  if (navigator.canShare && navigator.canShare(shareData)) {
-    await navigator.share(shareData);
+  try {
+    const shareData = {
+      files: [new File([await (await fetch(imageUrl)).blob()], "persona.png", { type: "image/png" })],
+    };
+    navigator.share(shareData);
+  } catch (error) {
+    console.error("Error sharing the image: ", error);
   }
-  // TODO implements a fallback to download the file
 }
 
 function preloadImages() {
