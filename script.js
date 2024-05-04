@@ -305,6 +305,13 @@ function preloadImages() {
   for (let i = 0; i < questions.length; i++) {
     imageUrls.push(`images/${questions[i][1]}`);
   }
+  for (let i = 0; i < outcomes.length; i++) {
+    imageUrls.push(`images/${outcomes[i][1]}`);
+  }
+  imageUrls.push("images/CD.png");
+  imageUrls.push("images/CO.png");
+  imageUrls.push("images/VD.png");
+  imageUrls.push("images/VO.png");
   // Preload the images
   for (let i = 0; i < imageUrls.length; i++) {
     let img = new Image();
