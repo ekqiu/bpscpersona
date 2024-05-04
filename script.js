@@ -295,3 +295,22 @@ async function shareImage(imageUrl) {
   }
   // TODO implements a fallback to download the file
 }
+
+function preloadImages() {
+  let imageUrls = [];
+  // Collect all the image URLs from the storyline and questions arrays
+  for (let i = 0; i < storyline.length; i++) {
+    imageUrls.push(`images/${storyline[i][1]}`);
+  }
+  for (let i = 0; i < questions.length; i++) {
+    imageUrls.push(`images/${questions[i][1]}`);
+  }
+  // Preload the images
+  for (let i = 0; i < imageUrls.length; i++) {
+    let img = new Image();
+    img.src = imageUrls[i];
+  }
+}
+
+// Call the preloadImages function to preload the images
+preloadImages();
