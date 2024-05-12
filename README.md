@@ -1,2 +1,2 @@
 # bpscpersona
-What kind of BPSC are you?
+The "BPSC Persona" is a personality quiz designed as a fun and interactive way for members of the BP Student Council to explore their unique traits and contributions to the council. ⁤⁤The quiz consists of questions that prompt participants to reflect on their strengths and approaches to teamwork, leadership, and problem-solving. ⁤⁤Based on their answers, participants are assigned a "BPSC Persona," which represents their role within the student council community. ⁤⁤The quiz aims to celebrate the diversity of skills and personalities within the council while fostering a sense of unity and camaraderie among members. ⁤
